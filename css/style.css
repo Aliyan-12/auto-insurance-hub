@@ -179,6 +179,18 @@ a:link {
 	color: #fbd45a;
 }
 
+.navbar .container .navbar-toggler {
+	/* fill: #fbd45a; */
+	border: 1px #fbd45a;
+	border-style: outset;
+}
+
+@media (max-width: 992px) {
+	section.clients {
+		display: none;
+	}
+}
+
 /* -- Header Section Styles -- */
 header{
 	background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.8)),
