@@ -25,6 +25,34 @@
 		<![endif]-->
 	</head>
 	<body id="home">
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Enter Phone Number</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form onsubmit="return submitLeadIdForm(event);" method="post">
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="basic-addon1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+								</svg>
+							</span>
+							<input type="tel" class="form-control" name="" placeholder="(888) 291-2039" aria-label="Username" aria-describedby="basic-addon1" required>
+							<input id="leadid_token" name="universal_leadid" type="hidden" value=""/>
+						</div>
+
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			</div>
+		</div>
 		<header>
 			<section class="navbar logo-holder navbar-expand-lg bg-body-dark">
 				<div class="container">
@@ -46,7 +74,9 @@
 						<a class="nav-link" href="#">Partners</a>
 					  </li>
 					  <li class="nav-item">
-						<a class="nav-link" href="pages/form.html">Form</a>
+						<button type="button" class="nav-link pt-3 pb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Form
+						</button>
 					  </li>
 					</ul>
 					
@@ -423,9 +453,31 @@
 		<script src="js/jquery-3.2.1.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
- 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 		<!-- Bootstrap Validator-->
 		<script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
 		<script src="js/custom.js" ></script>
+
+		<script id="LeadidScript" type="text/javascript">
+			function submitLeadIdForm(event) {
+				event.preventDefault(); 
+				var s = document.createElement('script');
+				s.id = 'LeadidScript_campaign';
+				s.type = 'text/javascript';
+				s.async = true;
+				s.src = '//create.lidstatic.com/campaign/93e92761-eb51-fe3b-9366-542deb108e13.js?snippet_version=2';
+				s.onload = function() {
+					console.log(document.getElementById('leadid_token').value);
+					event.target.submit();
+				};
+
+				var LeadidScript = document.getElementById('LeadidScript');
+				LeadidScript.parentNode.insertBefore(s, LeadidScript);
+				return false;
+			};
+		</script>
+		<noscript>
+			<img src='//create.leadid.com/noscript.gif?lac=643B9470-BEEE-94A1-40BE-69DF63A2B0CA&lck=93e92761-eb51-fe3b-9366-542deb108e13&snippet_version=2' />
+		</noscript>
 	</body>
 </html>
