@@ -21,7 +21,7 @@ $email = $_GET['email'];
 $phone = $_GET['phone'];
 $zip_code = $_GET['zip_code'];
 
-print_r($fname, $lname);exit;
+print_r($_GET);exit;
 
 $stmt = $conn->prepare("INSERT INTO leads (name, age, email) VALUES (?, ?, ?)");
 $stmt->bind_param("sis", $name, $age, $email); // "sis" means string, integer, string
