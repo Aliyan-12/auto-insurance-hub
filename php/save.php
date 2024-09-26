@@ -30,7 +30,6 @@ $stmt->bind_param("sssss", $leadId, $fname, $lname, $email, $phone, $zip_code); 
 if ($stmt->execute()) {
     $_SESSION['success'] = true;
     $_SESSION['message'] = 'Data saved successfully.';
-    header('')
 } else {
     $_SESSION['success'] = false;
     $_SESSION['message'] = 'Unknown error occured while saving data.';
