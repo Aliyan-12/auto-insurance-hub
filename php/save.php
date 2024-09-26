@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-    print_r("Connection failed: " . $conn->connect_error);exit;
+    die("Connection failed: " . $conn->connect_error);
 }
 
 // Get data from URL (GET request)
