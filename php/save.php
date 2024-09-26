@@ -28,7 +28,7 @@ $phone = $_GET['phone'];
 $zip_code = $_GET['zip_code'];
 
 $stmt = $conn->prepare("INSERT INTO leads (lead_id, fname, lname, email, phone, zip_code) VALUES (?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("sssss", $leadId, $fname, $lname, $email, $phone, $zip_code); // "sis" means string, integer, string
+$stmt->bind_param("ssssss", $leadId, $fname, $lname, $email, $phone, $zip_code); // "sis" means string, integer, string
 
 // Execute the query
 if ($stmt->execute()) {
