@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $servername = "localhost";
 $dbname = "u129255652_autosecurehub";
 $username = "u129255652_db_user";
@@ -14,21 +16,28 @@ if ($conn->connect_error) {
 }
 
 // Get data from URL (GET request)
-// Example: your-url.php?name=John&age=30&email=john@example.com
+$leadId = $_GET['Jornaya_leadId'];
 $fname = $_GET['fname'];
 $lname = $_GET['lname'];
 $email = $_GET['email'];
 $phone = $_GET['phone'];
 $zip_code = $_GET['zip_code'];
 
-print_r($_GET);exit;
-
-$stmt = $conn->prepare("INSERT INTO leads (name, age, email) VALUES (?, ?, ?)");
-$stmt->bind_param("sis", $name, $age, $email); // "sis" means string, integer, string
+$stmt = $conn->prepare("INSERT INTO leads (lead_id, fname, lname, email, phone, zip_code) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssss", $leadId, $fname, $lname, $email, $phone, $zip_code); // "sis" means string, integer, string
 
 // Execute the query
 if ($stmt->execute()) {
-    echo "New record created successfully";
+    $_SESSION['success'] = true;
+    $_SESSION['message'] = 'Data saved successfully.';
+    header('')
 } else {
-    echo "Error: " . $stmt->error;
+    $_SESSION['success'] = false;
+    $_SESSION['message'] = 'Unknown error occured while saving data.';
 }
+
+$stmt->close();
+$conn->close();
+
+header("Location: https://autosecurehub.com");
+exit();
