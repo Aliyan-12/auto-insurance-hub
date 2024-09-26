@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    print_r("Connection failed: " . $conn->connect_error);exit;
 }
 
 // Get data from URL (GET request)
@@ -21,7 +21,7 @@ $email = $_GET['email'];
 $phone = $_GET['phone'];
 $zip_code = $_GET['zip_code'];
 
-print_r($fname, $lname, $email, $phone, $zip_code);exit;
+print_r($fname, $lname);exit;
 
 $stmt = $conn->prepare("INSERT INTO leads (name, age, email) VALUES (?, ?, ?)");
 $stmt->bind_param("sis", $name, $age, $email); // "sis" means string, integer, string
