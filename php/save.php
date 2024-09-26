@@ -1,5 +1,9 @@
 <?php
 
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 
 $servername = "localhost";
@@ -32,7 +36,7 @@ if ($stmt->execute()) {
     $_SESSION['message'] = 'Data saved successfully.';
 } else {
     $_SESSION['success'] = false;
-    $_SESSION['message'] = 'Unknown error occured while saving data.';
+    $_SESSION['message'] = 'Unknown error occured while saving data: ' . $stmt->error;
 }
 
 $stmt->close();
