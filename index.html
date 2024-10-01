@@ -118,25 +118,33 @@
 								<div class="hero-form">
 										<!-- <h2>GET A QUOTE</h2>
 										<h6>FREE AND FASTER</h6> -->
-										<!-- <form method="post" id="contactform">
+										<form action="php/save.php" method="post">
+											<input type="hidden" name="universal_leadid" id="leadid_token" value="">
+											<input type="hidden" name="traffic_source_id" id="traffic_source_id" value="2374">
+											<input type="hidden" name="source_url" id="source_url" value="https://autosecurehub.com/">
+
 											<div class="form-group form-group-lg">
-												<label class="sr-only" >Full Name</label>
-												<input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" required="required">
+												<label class="sr-only" >First Name</label>
+												<input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required="required">
+											</div>
+											<div class="form-group form-group-lg">
+												<label class="sr-only" >Last Name</label>
+												<input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" required="required">
 											</div>
 											<div class="form-group form-group-lg">
 												<label class="sr-only">Email</label>
-												<input type="email" class="form-control" id="email" name="email" placeholder="Email ID" required="required">
+												<input type="email" class="form-control" id="email" name="email" placeholder="Email" required="required">
 											</div>
 											<div class="form-group form-group-lg">
 												<label class="sr-only" >Phone No</label>
-												<input type="text" class="form-control" id="phoneNo" name="phoneNo" placeholder="Phone No" required="required">
+												<input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" required="required">
 											</div>
 											<div class="form-group form-group-lg">
 												<label class="sr-only" >ZIP Code</label>
-												<input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="ZIP Code" required="required">
+												<input type="text" class="form-control" id="zip" name="zip" placeholder="ZIP Code" required="required">
 											</div>
-										</form> -->
-										<a role="button" href="pages/form.html" class="btn btn-primary btn-lg btn-block">GET QUOTE</a>
+											<button type="submit" class="btn btn-primary btn-lg btn-block">GET QUOTE</button>
+										</form>
 										<!-- <p>We promise your details are secure with us.</p> -->
 										<p class="form-message"></p>
 								</div>
@@ -432,6 +440,18 @@
 			</div>
 		</section>
 
+		<script id="LeadiDscript" type="text/javascript">
+			(function() {
+				var s = document.createElement('script');
+				s.id = 'LeadiDscript_campaign';
+				s.type = 'text/javascript';
+				s.async = true;
+				s.src = '//create.lidstatic.com/campaign/93e92761-eb51-fe3b-9366-542deb108e13.js?snippet_version=2';
+				var LeadiDscript = document.getElementById('LeadiDscript');
+				LeadiDscript.parentNode.insertBefore(s, LeadiDscript);
+			})();
+		</script>
+		<noscript><img src='//create.leadid.com/noscript.gif?lac=643B9470-BEEE-94A1-40BE-69DF63A2B0CA&lck=93e92761-eb51-fe3b-9366-542deb108e13&snippet_version=2' /></noscript>
 		<!-- <footer class="footer">
 			<div class="container">
 				<div class="row">
@@ -458,27 +478,5 @@
 		<!-- Bootstrap Validator-->
 		<script type="text/javascript" src="js/bootstrapValidator.min.js"></script>
 		<script src="js/custom.js" ></script>
-
-		<!-- <script id="LeadidScript" type="text/javascript">
-			function submitLeadIdForm(event) {
-				event.preventDefault(); 
-				var s = document.createElement('script');
-				s.id = 'LeadidScript_campaign';
-				s.type = 'text/javascript';
-				s.async = true;
-				s.src = '//create.lidstatic.com/campaign/93e92761-eb51-fe3b-9366-542deb108e13.js?snippet_version=2';
-				s.onload = function() {
-					console.log(document.getElementById('leadid_token').value);
-					event.target.submit();
-				};
-
-				var LeadidScript = document.getElementById('LeadidScript');
-				LeadidScript.parentNode.insertBefore(s, LeadidScript);
-				return false;
-			};
-		</script>
-		<noscript>
-			<img src='//create.leadid.com/noscript.gif?lac=643B9470-BEEE-94A1-40BE-69DF63A2B0CA&lck=93e92761-eb51-fe3b-9366-542deb108e13&snippet_version=2' />
-		</noscript> -->
 	</body>
 </html>
