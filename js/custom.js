@@ -6,10 +6,10 @@
         /* ========== Background image height equal to the browser height.==========*/
 
       $('.active').css('color', '#fbd45a');
-      $('header').css({ 'height': $(window).height() });
-         $(window).on('resize', function() {
-            $('header').css({ 'height': $(window).height() });
-         });
+      // $('header').css({ 'height': $(window).height() });
+      // $(window).on('resize', function() {
+      //   $('header').css({ 'height': $(window).height() });
+      // });
 
     });
 
