@@ -48,10 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $leadid_token = urlencode($_POST["universal_leadid"]);
     $traffic_source_id = urlencode($_POST["traffic_source_id"]);
     $source_url = urlencode($_POST["source_url"]);
-    $leadid_tcpa_disclosure = urlencode($_POST["leadid_tcpa_disclosure"] == 'on' ? true : false);
+    // $leadid_tcpa_disclosure = urlencode($_POST["leadid_tcpa_disclosure"] == 'on' ? true : false);
 
     $api_url = "https://global-digital-media.trackdrive.com/api/v1/leads/capture";
-    $api_params = "jornaya_leadid=$leadid_token&traffic_source_id=$traffic_source_id&caller_id=$caller_id&tcpa_opt_in=$leadid_tcpa_disclosure&source_url=$source_url&first_name=$fname&last_name=$lname&zip=$zip&email=$email";
+    $api_params = "jornaya_leadid=$leadid_token&traffic_source_id=$traffic_source_id&caller_id=$caller_id&source_url=$source_url&first_name=$fname&last_name=$lname&zip=$zip&email=$email";
 
     $ch = curl_init($api_url);
 
