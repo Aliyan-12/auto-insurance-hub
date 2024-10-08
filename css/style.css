@@ -931,3 +931,15 @@ padding-bottom: 8px;
 		font-size: 34px;
 	}
 }
+
+
+/* Terms & conditions */
+.talk-to {
+	padding: 10px 25px;
+	border-radius: 30px;
+	background: #fbd45a;
+}
+.talk-to a {
+	color: #000;
+	text-decoration: none;
+}
