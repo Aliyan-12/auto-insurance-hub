@@ -65,7 +65,7 @@
                             <p class="text-start"><strong>11 . Termination: </strong><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We reserve the right to terminate or restrict your access to our website and services at any time without notice if we believe you have violated these Terms and Conditions.</p>
                         </div>
                         <div class="d-flex items-center justify-content-center gap-4">
-                            <p class="text-start"><strong>12 . Governing Law: </strong><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;These Terms and Conditions are governed by and construed in accordance with the laws of Pennsylvania.</p>
+                            <p class="text-start"><strong>12 . Governing Law: </strong><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;These Terms and Conditions are governed by and construed in accordance with the laws of Your State, without regard to its conflict of law provisions. Any disputes arising from or relating to these terms will be subject to the exclusive jurisdiction of the courts located in Your Jurisdiction.</p>
                         </div>
                         <div class="d-flex items-center justify-content-center gap-4">
                             <p class="text-start"><strong>13 . Amendments: </strong><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We may update these Terms and Conditions from time to time. You are responsible for reviewing these terms periodically for any changes. Continued use of our website following the posting of changes will constitute acceptance of those changes.</p>
