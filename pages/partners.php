@@ -47,6 +47,9 @@
                         <div class="d-flex gap-4">
                             <p class="text-start"><strong>6 . Hippo</strong></p>
                         </div>
+                        <div class="d-flex gap-4">
+                            <p class="text-start"><strong>7 . Solid Quote</strong></p>
+                        </div>
                     </div>
                 </div>
             </div>
