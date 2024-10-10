@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -17,41 +20,25 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+		<style>
+			#message {
+				text-shadow: 15px 5px 20px #666;
+				transition: opacity 0.5s ease;
+			}
+		</style>
+		<script>
+			setTimeout(function() {
+				var messageElement = document.getElementById('message');
+				if (messageElement) {
+					messageElement.style.opacity = '0'; // Fade out
+					setTimeout(() => {
+						messageElement.remove(); // Remove after fade out
+					}, 500);
+				}
+			}, 4000);
+		</script>
 	</head>
 	<body id="home">
-		<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h1 class="modal-title fs-5" id="exampleModalLabel">Enter Phone Number</h1>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<form onsubmit="return submitLeadIdForm(event);" method="post">
-						<div class="input-group mb-3">
-							<span class="input-group-text" id="basic-addon1">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
-									<path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-								</svg>
-							</span>
-							<input type="tel" class="form-control" name="" placeholder="(888) 291-2039" aria-label="Username" aria-describedby="basic-addon1" required>
-							<input id="leadid_token" name="universal_leadid" type="hidden" value=""/>
-						</div>
-
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</div>
-					</form>
-				</div>
-			</div>
-			</div>
-		</div> -->
 		<header>
 			<section class="navbar logo-holder navbar-expand-lg bg-body-dark">
 				<div class="container">
@@ -80,24 +67,6 @@
 				  </div>
 				</div>
 			</section>
-			<!-- <section class="logo-holder">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-4 col-sm-12">
-							<h2><a href="#"> <span>Auto</span> Insurance</a></h2>
-						</div>
-						<div class="col-md-7 col-sm-12">
-							<ul class="nav-list">
-								<li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-								<li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">Partners</a></li>
-								<li class="nav-item"><a class="nav-link" href="pages/form.html">Form</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section> -->
-			<!-- Logo Holder Section End -->
 
 			<section class="hero">
 				<div class="container-fluid">
@@ -109,54 +78,55 @@
 								<!-- <h6>Manage your policy your way, with our mobile app, paperless policy documents and billing, and online automatic bill payments.</h6> -->
 							</div>
 						</div>
-							<!-- <div class="col-sm-2">
-								<div class="arrow">
-									<img src="images/arrow.png" alt="arrow">
-								</div>
-							</div> -->
 							<div class="col-md-6 col-sm-12">
 								<div class="hero-form">
-										<!-- <h2>GET A QUOTE</h2>
-										<h6>FREE AND FASTER</h6> -->
-										<form action="php/save.php" method="post">
-											<input type="hidden" name="universal_leadid" id="leadid_token" value="">
-											<input type="hidden" name="traffic_source_id" id="traffic_source_id" value="2374">
-											<input type="hidden" name="source_url" id="source_url" value="https://autosecurehub.com/">
+									<?php if(array_key_exists('success', $_SESSION) && $_SESSION['success']): ?>
+										<div id="message" class="fw-bold fs-3 text-success"><?= $_SESSION['message']; ?></div>
+									<?php elseif(array_key_exists('success', $_SESSION) && !$_SESSION['success']): ?>
+										<div id="message" class="fw-bold fs-3 text-danger"><?= $_SESSION['message']; ?></div>
+									<?php endif; ?>
+									<?php unset($_SESSION['success']); unset($_SESSION['message']); ?>
+									<!-- <h2>GET A QUOTE</h2>
+									<h6>FREE AND FASTER</h6> -->
+									<form action="php/save.php" method="post">
+										<input type="hidden" name="universal_leadid" id="leadid_token" value="">
+										<input type="hidden" name="traffic_source_id" id="traffic_source_id" value="2374">
+										<input type="hidden" name="source_url" id="source_url" value="https://autosecurehub.com/">
 
-											<div class="form-group form-group-lg">
-												<label class="sr-only" >First Name</label>
-												<input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required="required">
-											</div>
-											<div class="form-group form-group-lg">
-												<label class="sr-only" >Last Name</label>
-												<input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" required="required">
-											</div>
-											<div class="form-group form-group-lg">
-												<label class="sr-only">Email</label>
-												<input type="email" class="form-control" id="email" name="email" placeholder="Email" required="required">
-											</div>
-											<div class="form-group form-group-lg">
-												<label class="sr-only" >Phone No</label>
-												<input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" required="required">
-											</div>
-											<div class="form-group form-group-lg">
-												<label class="sr-only" >ZIP Code</label>
-												<input type="text" class="form-control" id="zip" name="zip" placeholder="ZIP Code" required="required">
-											</div>
-											<div class="form-group form-group-lg">
-												<label class="d-flex align-items-start text-danger fw-bold">
-													<!-- <input type="checkbox" class="d-flex me-2" name="leadid_tcpa_disclosure" id="leadid_tcpa_disclosure" required="required"/> -->
-													Terms and Conditions
-												</label>
-												<p class="fw-normal text-start text-dark fs-6">
-													By clicking the <strong>“Get Quote”</strong> button, I agree to the <a href="./pages/privacy-policy.php" style="text-decoration: underline; color: inherit;" target="_blank">Privacy Policy</a> and <a href="./pages/terms-&-conditions.php" style="text-decoration: underline; color: inherit;" target="_blank">Terms & Conditions.</a> <br>
-													By clicking the <strong>“Get Quote”</strong> button, I hereby consent to receive marketing communications via automated telephone dialing system and/or pre-recorded or artificial voice calls, text messages, and/or emails from Auto Secure Hub and one or more of its <a href="./pages/partners.php" style="text-decoration: underline; color: inherit;" target="_blank">Marketing Partners</a> at the phone number provided above. Consent is not a condition of purchase and may be revoked at any time. For a quote without consent, please call Auto Secure Hub at <a href="tel:(855) 308-1639" style="text-decoration: underline; color: inherit;">(855) 308-1639</a>.
-												</p>
-											</div>
-											<button type="submit" class="btn btn-primary btn-lg btn-block">GET QUOTE</button>
-										</form>
-										<!-- <p>We promise your details are secure with us.</p> -->
-										<p class="form-message"></p>
+										<div class="form-group form-group-lg">
+											<label class="sr-only" >First Name</label>
+											<input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required="required">
+										</div>
+										<div class="form-group form-group-lg">
+											<label class="sr-only" >Last Name</label>
+											<input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" required="required">
+										</div>
+										<div class="form-group form-group-lg">
+											<label class="sr-only">Email</label>
+											<input type="email" class="form-control" id="email" name="email" placeholder="Email" required="required">
+										</div>
+										<div class="form-group form-group-lg">
+											<label class="sr-only" >Phone No</label>
+											<input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone" required="required">
+										</div>
+										<div class="form-group form-group-lg">
+											<label class="sr-only" >ZIP Code</label>
+											<input type="text" class="form-control" id="zip" name="zip" placeholder="ZIP Code" required="required">
+										</div>
+										<div class="form-group form-group-lg">
+											<label class="d-flex align-items-start text-danger fw-bold">
+												<!-- <input type="checkbox" class="d-flex me-2" name="leadid_tcpa_disclosure" id="leadid_tcpa_disclosure" required="required"/> -->
+												Terms and Conditions
+											</label>
+											<p class="fw-normal text-start text-dark fs-6">
+												By clicking the <strong>“Get Quote”</strong> button, I agree to the <a href="./pages/privacy-policy.php" style="text-decoration: underline; color: inherit;" target="_blank">Privacy Policy</a> and <a href="./pages/terms-&-conditions.php" style="text-decoration: underline; color: inherit;" target="_blank">Terms & Conditions.</a> <br>
+												By clicking the <strong>“Get Quote”</strong> button, I hereby consent to receive marketing communications via automated telephone dialing system and/or pre-recorded or artificial voice calls, text messages, and/or emails from Auto Secure Hub and one or more of its <a href="./pages/partners.php" style="text-decoration: underline; color: inherit;" target="_blank">Marketing Partners</a> at the phone number provided above. Consent is not a condition of purchase and may be revoked at any time. For a quote without consent, please call Auto Secure Hub at <a href="tel:(855) 308-1639" style="text-decoration: underline; color: inherit;">(855) 308-1639</a>.
+											</p>
+										</div>
+										<button type="submit" class="btn btn-primary btn-lg btn-block">GET QUOTE</button>
+									</form>
+									<!-- <p>We promise your details are secure with us.</p> -->
+									<p class="form-message"></p>
 								</div>
 							</div>
 					</div> <!-- Hero Row End -->

@@ -74,5 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Close cURL session
     curl_close($ch);
 }
-header("Location: https://autosecurehub.com/");
+header("Location: http://127.0.0.1:8002/");
+// header("Location: https://autosecurehub.com/");
 exit();
